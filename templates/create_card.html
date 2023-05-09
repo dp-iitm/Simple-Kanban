@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>ADD</title>
+    <link rel="stylesheet" href="/static/login_css.css">
+</head>
+
+<body>
+<form action="/{{ user_id }}/{{ list_id }}/create_card" method="POST" id="add">
+    <div class="mb-3">
+        <p> List name : {{ list_name }}</p><br>
+            <label for="exampleFormControlInput1" id="exampleFormControlInput">Enter title</label><br>
+            <input class="form-control" type="text" name="c_title" required><br>
+        {% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+                    <p style="color:red;">{{ message }}</p>
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
+            <label for="exampleFormControlInput1" id="exampleFormControlInput1">Enter content</label><br>
+            <input class="form-control" type="text" name="c_content"  required><br>
+            <label for="exampleFormControlInput1" id="exampleFormControlInput2" >Enter deadline</label><br>
+            <input type="datetime-local" name="deadline" required><br>
+    </div>
+
+        <input type="radio" name="done" value="yes" >
+        <label>Completed</label>
+        <input type="radio" name="done" value="no" checked="checked">
+        <label>Not Completed</label>
+    <br>
+    <br>
+    <div>
+        <input type="submit"  value="OK">
+    </div>
+
+
+
+</form>
+
+<a href="{{ url_for('main_board',user_id=user_id) }} ">Go back </a>
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+body{
+    text-align:center;
+    font-size: 30px;
+    background-color: #FFE7BF
+    }
+label{
+    color: black;
+    }
+
+.form-control{
+    display:inline-block;
+    width: 300px;
+    }

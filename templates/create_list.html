@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/login_css.css">
+</head>
+<body>
+
+<form action="/{{ user_id }}/create_list" method="POST" id="add">
+    <div class="mb-3">
+            <label for="exampleFormControlInput1" id="exampleFormControlInput1">Enter title</label><br>
+        {% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+                    <p style="color:red;">{{ message }}</p>
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
+            <input class="form-control" type="text" name="l_title"  required>
+        </div>
+
+        <input type="submit"  value="OK">
+
+</form>
+<a href="{{ url_for('main_board',user_id=user_id) }} ">Go back </a>
+</body>
+</html>
+

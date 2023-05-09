@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/main_board.css">
+
+    <title>{{ user.name }}</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" >Welcome, {{ user.name }} </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/{{ user.id }}/create_list">+Add list |</a>
+        <a class="nav-link" href="/{{ user.id }}/summary">Summary |</a>
+        <a class="nav-link" href="/">Logout </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<br>
+<div class="container">
+  <div class="row align-items-start">
+        {% for list in lists %}
+    <div class="col gx-3">
+        <div class="p-2 border border-warning border-4" style="max-width: 22rem;"><h3 style="font-family: brush script mt;">{{ list.title }}</h3>
+            <a href="/{{ user.id }}/{{ list.id }}/edit_list">Edit</a> |
+                    <a href="/{{ user.id }}/{{ list.id }}/create_card">+Add card</a> |
+                <a href="/{{ user.id }}/{{ list.id }}/delete_list">Delete</a>
+            </div>
+        <br>
+          {% for card in list.cards %}
+          <div class="card border-info mb-2" style="max-width: 22rem;">
+              <div class="card-header pb-0">{{ card.title }}
+                  <h6> Created at: {{ card.time_created.strftime("%d %b, %y -%I:%M %p")}}</h6>
+              </div>
+              <div class="card-body pb-0">
+                <p class="card-text">{{ card.content }}</p>
+                  <a href="/{{ user.id }}/{{ list.id }}/{{ card.id }}/edit_card" class="card-link link-secondary">Edit</a> |
+                  <a href="/{{ user.id }}/{{ card.id }}/delete_card" title="delete" class="delete card-link link-secondary">Delete</a>
+
+              </div>
+              <div class="card-footer bg-transparent border-info pt-2"><small class="text-muted">Last update : {{ card.time_updated.strftime("%d %b, %y | %I:%M %p") }}</small><br>
+                  <small class="text-muted">Deadline : {{ card.deadline.replace('T', '  ') }}</small> <br>
+                  {% if card.time_completed %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg>
+                    Completed at : {{ card.time_completed.strftime("%d %b, %y | %I:%M %p") }}
+                  {% endif %}
+              </div>
+            </div>
+
+      {% endfor %}
+    </div>
+      {% endfor %}
+
+  </div>
+</div>
+
+
+
+</body>
+</html>

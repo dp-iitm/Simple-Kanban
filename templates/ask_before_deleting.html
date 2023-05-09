@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+    <link rel="stylesheet" href="/static/login_css.css">
+</head>
+<body>
+<h1>Delete List: </h1>
+<form action="/{{ user_id }}/{{ list_id }}/delete_list" method="POST" id="delete">
+<input type="radio" name="delete" value="delete_all" >
+<label>Delete List with cards </label>
+<input type="radio" name="delete" value="shift_cards" >
+<label>Shift and delete </label>
+<input type="submit" value="Ok" >
+<br><br>
+    <a href="{{ url_for('main_board',user_id=user_id) }} ">Go back </a>
+</body>
+
+
+</html>

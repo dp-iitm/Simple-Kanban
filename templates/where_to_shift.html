@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+    <link rel="stylesheet" href="/static/login_css.css">
+</head>
+<body>
+<h1>Delete List: </h1>
+<form action="/{{ user_id }}/{{ list_id }}/shift_and_delete" method="POST" id="delete">
+
+<label for="list_titles">Select List: </label>
+                    <select name="move" id="move_to">
+                        {% for list in lists %}
+                        {% if list.id == list_id %}
+                        <option value="{{ list.id }}" disabled>{{ list.title }}</option> <!--can't shift to the same list -->
+                        {% else %}
+                        <option value="{{ list.id }}" >{{ list.title }}</option>
+                        {% endif %}
+                        {% endfor %}
+                        </select>
+
+    <div>
+        <input type="submit"  value="OK">
+    </div>
+</form>
+</body>
+</html>
+

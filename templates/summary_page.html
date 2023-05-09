@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/main_board.css">
+  <style>
+      .card{
+        max-height: 800px;
+          max-width: 600px;
+          }
+  </style>
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand">Summary page for {{ user.name }} </a>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+
+              <a class="nav-link" href="/{{ user.id }}/main-board"> Go Back || </a>
+              <a class="nav-link" href="/"> Logout </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+<br>
+      <h1 style="text-align:center">List-wise analysis</h1>
+      <div class="col">
+          <div class="card" style="display:block; margin: 0 auto;">
+            <img src='{{ chart }}' class="card-img-top" alt="No data available">
+            <div class="card-body" >
+              <h5 class="card-title" style="text-align:center;">List wise summary </h5>
+            </div>
+          </div>
+      </div>
+      <br>
+      <hr>
+<h1 style="text-align:center">Day-wise analysis of cards per list</h1>
+    <div class="card-group p-3" >
+         {% for list in lists %}
+      <div class="card p-3 text-center" >
+        {% if list['chart'] == '' %}
+        <br>
+        <br>
+        <h2>No image  available</h2>
+        <h2>No cards done yet</h2>
+        <br>
+        {% else %}
+        <img src="{{ list['chart']}}" class="card-img-top" alt="no data ">
+        {% endif %}
+        <div class="card-body">
+          <h2 class="card-title"> List : {{ list['list_title'] }}</h2>
+          <hr>
+            <p class="card-text">Total cards:  {{ list['total_cards'] }}</p>
+            <p class="card-text">Not done:  {{ list['cards_not_done'] }}</p>
+            <p class="card-text">Cards done:  {{ list['cards_done'] }}</p>
+            <p class="card-text">Deadline crossed:  {{ list['cards_crossed_deadline'] }} </p>
+        </div>
+  </div>
+    {% endfor %}
+</div>
+
+
+
+</body>
+</html>

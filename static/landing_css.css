@@ -1,0 +1,31 @@
+
+body{
+background-image: url("background_image.png");
+background-position: center;
+background-repeat: no-repeat;
+}
+
+
+/*kanban app*/
+.display-1{
+          padding-top:250px;
+          font-family:copperplate;
+          color:black;
+          font-size:130px;
+}
+
+/*welcome*/
+.display-3{
+        padding-bottom: 70px;
+        letter-spacing:5px;
+        font-family:Brush Script MT;
+        color:black;
+        font-size:70px;
+}
+
+/*anchor tags*/
+a{
+    color:black;
+    font-size:30px;
+}
+
